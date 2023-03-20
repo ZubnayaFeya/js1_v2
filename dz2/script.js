@@ -52,6 +52,10 @@ function myMultiply(a, b) {
 }
 
 function myDivision(a, b) {
+    if (b == 0) {
+        alert("На ноль делить нельзя!");
+        return
+    }
     return a / b;
 }
 
@@ -77,4 +81,42 @@ function recursiveMultipy(val, pow) {
     }
 }
 
+/* ПРАКТИКУМ
+Пишем игру "угадай число"
 
+Попытки отгадать число будут идти через диалоговое окно – prompt. Браузер будет сообщать в ответ,
+больше или меньше загаданного наше предположение.
+
+Алгоритм будет таким:
+1 Браузер генерирует число и приглашает пользователя к игре.
+2 Выводится окно запроса предположения.
+3 Браузер проверяет число и возвращает результат.
+4 Повторяем до тех пор, пока число не будет угадано.
+5 Как только число угадано, браузер сбрасывает число попыток и генерирует новое число.*/
+
+function round() {
+    let hiddenNumber = parseInt(Math.random() * 10000);
+    let numberAttempts = 1
+    while (true) {
+        let userNum = +prompt("Попробуйте угадать загаданное число");
+        console.log(hiddenNumber);
+        if (userNum == hiddenNumber) {
+            alert(`Вы угадали с ${numberAttempts} попытки! Поздравляем с победой!`);
+            break;
+        } else if (userNum > hiddenNumber) {
+            alert("Загаданное число меньше вашего.");
+        } else {
+            alert("Загаданное число больше вашего.");
+        }
+        numberAttempts++
+    }
+}
+
+
+function guessTheNumber() {
+    while (true) {
+    round();
+    }
+}
+
+guessTheNumber();
