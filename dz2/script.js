@@ -99,7 +99,6 @@ function round() {
     let numberAttempts = 1
     while (true) {
         let userNum = +prompt("Попробуйте угадать загаданное число");
-        console.log(hiddenNumber);
         if (userNum == hiddenNumber) {
             alert(`Вы угадали с ${numberAttempts} попытки! Поздравляем с победой!`);
             break;
