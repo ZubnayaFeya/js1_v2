@@ -94,27 +94,38 @@ function recursiveMultipy(val, pow) {
 4 Повторяем до тех пор, пока число не будет угадано.
 5 Как только число угадано, браузер сбрасывает число попыток и генерирует новое число.*/
 
-function round() {
-    let hiddenNumber = parseInt(Math.random() * 10000);
-    let numberAttempts = 1
-    while (true) {
-        let userNum = +prompt("Попробуйте угадать загаданное число");
-        if (userNum == hiddenNumber) {
-            alert(`Вы угадали с ${numberAttempts} попытки! Поздравляем с победой!`);
-            break;
-        } else if (userNum > hiddenNumber) {
-            alert("Загаданное число меньше вашего.");
-        } else {
-            alert("Загаданное число больше вашего.");
-        }
-        numberAttempts++
+function round(hiddenNumber, numberAttempts) {
+
+    let userNum = +prompt("Попробуйте угадать загаданное число");
+    if (userNum == hiddenNumber) {
+        alert(`Вы угадали с ${numberAttempts} попытки! Поздравляем с победой!`);
+        return true;
+    } else if (userNum > hiddenNumber) {
+        alert("Загаданное число меньше вашего.");
+    } else {
+        alert("Загаданное число больше вашего.");
     }
+    return false;
 }
 
 
+function part(hiddenNumber, numberAttempts) {
+    numberAttempts++
+
+    let status = round(hiddenNumber, numberAttempts);
+    if (status) {
+        //debugger
+        guessTheNumber();
+
+    }
+    part(hiddenNumber, numberAttempts);
+}
+
 function guessTheNumber() {
-    while (true) {
-    round();
+    let numberAttempts = 0
+    //debugger
+    if (part(parseInt(Math.random() * 10), numberAttempts)) {
+        guessTheNumber();
     }
 }
 
